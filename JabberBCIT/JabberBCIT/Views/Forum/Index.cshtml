@@ -10,17 +10,17 @@
     @Styles.Render("~/Content/forum.css")
     <!-- Janky voting code -->
     <script type="text/javascript">
-        $(document).ready(function () {
-            $(".voteButton").click(function (e) {
-                e.preventDefault();
-                $.ajax({
-                    url: $(this).attr("href"),
-                    success: function (result) {
-                        document.getElementById(result.id).innerHTML = result.value;
-                    }
+            $(document).ready(function() {
+                $(".voteButton").click(function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        url:$(this).attr("href"),
+                        success: function (result) {
+                            document.getElementById(result.id).innerHTML = result.value;
+                        }
+                    });
                 });
             });
-        });
     </script>
 </head>
 <body style="padding-top: 0px;">
@@ -31,56 +31,24 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 id="header-forum">
-                            <b>@ViewBag.ForumTitle Forum</b>
+                            <b>@ViewBag.ForumTitle</b>
                             <br>
-                            <small>Talk about your stuff!</small>
-                            <button type="button" id="button-create-post" class="btn btn-primary pull-right" onclick="@("location.href='"+ Url.Action("CreatePost","Forum")+ "'")">Create Post</button>
+                            <button type="button" class="btn btn-primary pull-right" onclick="@("location.href='" + Url.Action("CreatePost", "Forum") + "'")">Create Post</button>
                         </h1>
                     </div>
                 </div>
 
                 <!-- Posts -->
-                <table class="table table-filter">
+                <table id="partial-post" class="table">
                     <tbody>
                         @foreach (var post in Model)
                         {
                             @Html.Partial("PostPartial", post)
                         }
-
                     </tbody>
                 </table>
                 <!-- ./Posts -->
-                <!-- Pagination -->
-                <div class="row text-center">
-                    <div class="col-lg-12">
-                        <ul class="pagination">
-                            <li>
-                                <a href="#">&laquo;</a>
-                            </li>
-                            <li class="active">
-                                <a href="#">1</a>
-                            </li>
-                            <li>
-                                <a href="#">2</a>
-                            </li>
-                            <li>
-                                <a href="#">3</a>
-                            </li>
-                            <li>
-                                <a href="#">4</a>
-                            </li>
-                            <li>
-                                <a href="#">5</a>
-                            </li>
-                            <li>
-                                <a href="#">&raquo;</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
                 <hr>
-
                 <!-- Footer -->
                 <footer>
                     <div class="row text-center">
@@ -92,10 +60,8 @@
 
             </div>
             <!-- /.container-fluid -->
-
         </div>
         <!-- /#page-wrapper -->
-
     </div>
     <!-- /#wrapper -->
 </body>

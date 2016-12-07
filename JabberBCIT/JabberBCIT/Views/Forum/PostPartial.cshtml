@@ -4,17 +4,19 @@
 }
 <tr>
     <td>
+        <p class="vote-count" id="post_votes_@Model.post.PostID">@Model.votes</p>
+    </td>
+    <td>
         <a href="/Vote/Post/@Model.post.PostID/1" class="voteButton">
             <span class="glyphicon glyphicon-chevron-up vote-icon-up"></span>
         </a>
-        <p class="vote-count">@Model.votes</p>
         <a href="/Vote/Post/@Model.post.PostID/-1" class="voteButton">
             <span class="glyphicon glyphicon-chevron-down vote-icon-down"></span>
         </a>
     </td>
     <td>
         <div class="media">
-            <a href="#" class="pull-left">
+            <a href="@Model.post.PostID/" class="pull-left">
                 <img src="@Model.post.User.ProfilePicture" class="media-photo" width="35" height="35">
             </a>
             <a href="@Model.post.PostID/">
